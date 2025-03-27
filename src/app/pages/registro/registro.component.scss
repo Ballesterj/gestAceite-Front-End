@@ -1,0 +1,48 @@
+.login-container {
+    max-width: 500px;
+    margin: 100px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    text-align: left;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    font-family: "body base", sans-serif;
+  }
+  
+  input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    background: black;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  a {
+    margin-top: 20px;
+    // display: block;
+    color: black;
+    position: relative;
+    text-decoration: none;
+    margin-left: -70%;
+    font-family: "body base", sans-serif;
+  }
+  

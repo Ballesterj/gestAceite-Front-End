@@ -1,0 +1,14 @@
+<header [ngClass]="{ 'hidden': isHidden, 'scrolled': isScrolled }">
+  <div class="header-container">
+    <img src="assets/img/logo-sf.png" alt="GestAceite Logo" class="logo" />
+    <img src="/assets/img/logo-aceituna-sf.png" alt="Aceituna" class="olive-icon" />
+    <nav>
+      <ul>
+        <li><a routerLink="/buzon">Buzón</a></li>
+        <li><a routerLink="/fincas">Fincas</a></li>
+        <li><a routerLink="/estadisticas">Estadísticas</a></li>
+        <li><a [routerLink]="'/perfil'" class="fa-solid fa-user user-icon"></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
