@@ -1,0 +1,135 @@
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto 20px;
+    max-width: 4000px;
+  }
+  
+  .filter-btn, .add-btn {
+    background-color: gold;
+    border: none;
+    padding: 10px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .search-input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%; /* Se ajusta para ocupar todo el espacio disponible */
+    max-width: 350px; /* Máximo tamaño de la barra de búsqueda */
+  }
+  
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+
+// MODAL NUEVA FINCA
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+}
+
+.modal h2 {
+  margin-bottom: 15px;
+}
+
+.modal label {
+  display: block;
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+.modal input {
+  width: 80%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.save-btn {
+  background-color: green;
+  color: rgb(119, 255, 0);
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.error-message {
+  color: red;
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+/* Botón deshabilitado */
+.disabled-btn {
+  background-color: gray;
+  cursor: not-allowed;
+  color: white;
+}
+
+/* Botón habilitado (cuando el formulario es válido) */
+.enabled-btn {
+  background-color: green !important;
+  color: white !important;
+  cursor: pointer;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
