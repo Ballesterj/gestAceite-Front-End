@@ -1,84 +1,106 @@
-.perfil-container {
-    max-width: 600px;
-    margin: 50px auto;
-    display: grid;
-    grid-template-columns: 1fr 2fr; /* Divide el contenedor en dos columnas */
-    gap: 20px; /* Espacio entre las columnas */
-    background-color: #282c34; /* Fondo oscuro */
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-    color: white;
-    padding: 20px;
-  }
-  
-  .profile-section {
+.profile-container {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+}
+
+.profile-image-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    border-right: 1px solid #36393f; /* Línea divisoria */
-    padding-right: 20px;
-  }
-  
-  .profile-image {
-    width: 80px;
-    height: 80px;
+    width: 150px;
+    margin-left: 50px;
+    position: relative; /* Evita que afecte otros elementos */
+}
+
+.profile-image {
+    position: relative;
+    top: 80px; /* Baja solo la imagen sin afectar otros elementos */
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     overflow: hidden;
     margin-bottom: 20px;
-  }
-  
-  .profile-image img {
+}
+
+
+.profile-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-  
-  .user-name {
+}
+
+.user-name {
     font-size: 1.5em;
     font-weight: bold;
-  }
-  
-  .form-section {
+    color: yellow;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.white-line {
+    width: 1px;
+    background-color: white;
+    height: 60vh;
+    position: relative;
+    left: 350px; /* Ajusta para mantener su independencia */
+    top: -100px;
+}
+
+.form-section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%); /* Centra completamente */
     display: flex;
     flex-direction: column;
+    width: 450px;
     padding-left: 20px;
-  }
-  
-  .perfil-form {
+}
+
+
+.perfil-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
-  }
-  
-  .form-group {
+    gap: 25px 20px; /* Aumenta el espacio entre filas y columnas */
+}
+
+.form-group {
     display: flex;
     flex-direction: column;
-  }
-  
-  label {
+    padding: 10px; /* Agrega espacio interno */
+}
+
+.form-row {
+    display: contents; /* Mantiene los hijos en la misma fila sin afectar la estructura */
+}
+
+label {
     display: block;
     margin-bottom: 5px;
     font-size: 0.9em;
-  }
-  
-  .form-control {
+    color: white;
+    margin-top: 5px;
+}
+
+.form-control {
     width: 100%;
     padding: 10px;
-    border: 1px solid #4a5568;
+    border: 1px solid #545454;
     border-radius: 4px;
-    background-color: #374151;
-    color: white;
+    background-color: #fffcfc;
+    color: rgb(0, 0, 0);
     font-size: 0.9em;
-  }
-  
-  .error-message {
+}
+
+.error-message {
     color: #e53e3e;
     font-size: 0.8em;
     margin-top: 5px;
-  }
-  
-  button.btn.btn-primary {
+}
+
+button.btn.btn-primary {
     background-color: #48bb78;
     color: white;
     padding: 10px 15px;
@@ -86,10 +108,18 @@
     border-radius: 4px;
     cursor: pointer;
     margin-top: 20px;
-    grid-column: 1 / 3;
-  }
-  
-  button.btn.btn-primary:disabled {
-    background-color: #718096;
+    width: 200px; /* Ajusta el ancho del botón */
+    margin-left: 60%;  /* Centra el botón horizontalmente */
+    margin-right: auto; /* Centra el botón horizontalmente */
+    display: block; /* Asegura que el botón se comporte como un bloque para centrarlo */
+}
+
+button.btn.btn-primary:disabled {
+    background-color: #ff0000;
     cursor: not-allowed;
-  }
+}
+
+.hidden {
+    visibility: hidden; /* Oculta sin eliminar espacio */
+}
+

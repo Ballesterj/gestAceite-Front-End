@@ -1,11 +1,13 @@
-<div class="perfil-container">
-    <div class="perfil-header">
-      <div class="profile-image">
-        <img src="assets/profile-placeholder.png" alt="Foto de perfil">
-      </div>
-      <div class="user-name">SOCIO</div>
+<div class="profile-image-section">
+    <div class="user-name">PERFIL</div>
+    <div class="profile-image">
+      <img src="../../../assets/img/profile-defect.png" alt="Foto de perfil">
     </div>
+  </div>
   
+  <div class="white-line"></div>
+  
+  <div class="form-section">
     <form (ngSubmit)="guardarPerfil()" #perfilForm="ngForm" class="perfil-form">
       <div class="form-row">
         <div class="form-group">
@@ -22,31 +24,36 @@
   
       <div class="form-row">
         <div class="form-group">
-          <label for="phone">Teléfono</label>
-          <input type="text" id="phone" name="phone" [(ngModel)]="user.phone" required class="form-control" placeholder="Ingrese su teléfono" #phone="ngModel" />
-          <div *ngIf="phone.invalid && phone.touched" class="error-message">El teléfono es requerido.</div>
-        </div>
+            <label for="phone">Teléfono</label>
+            <input type="text" id="phone" name="phone" [(ngModel)]="user.phone" required class="form-control" placeholder="Ingrese su teléfono" #phone="ngModel" 
+                   pattern="^[0-9]{9}$" />
+            <div *ngIf="phone.invalid && phone.touched" class="error-message">
+              El teléfono debe ser un número de 9 dígitos.
+            </div>
+          </div>
+          
         <div class="form-group">
           <label for="password">Contraseña</label>
-          <input type="password" id="password" name="password" [(ngModel)]="user.password" required class="form-control" placeholder="Ingrese su contraseña" #password="ngModel" />
+          <input type="password" id="password" name="password" [(ngModel)]="user.password" class="form-control" placeholder="Ingrese su nueva contraseña" #password="ngModel" />
           <div *ngIf="password.invalid && password.touched" class="error-message">La contraseña es requerida.</div>
         </div>
       </div>
   
       <div class="form-row">
+        <!-- Campo de Rol -->
         <div class="form-group">
-          <label for="rol">Rol</label>
-          <select id="rol" name="rol" [(ngModel)]="user.rol" required class="form-control" #rol="ngModel">
-            <option value="agricultor">Agricultor</option>
-            <option value="cooperativa">Cooperativa</option>
-          </select>
-          <div *ngIf="rol.invalid && rol.touched" class="error-message">El rol es requerido.</div>
+            <label for="rol">Rol</label>
+            <input type="text" id="rol" name="rol" [(ngModel)]="user.rol" class="form-control" [value]="user.rol" readonly />
         </div>
-        <div class="form-group" *ngIf="user.rol === 'cooperativa'">
-          <label for="cooperativa">Cooperativa</label>
-          <input type="text" id="cooperativa" name="cooperativa" [(ngModel)]="user.cooperativa" class="form-control" placeholder="Ingrese su cooperativa" #cooperativa="ngModel" />
+    
+        <!-- Campo de Cooperativa SIEMPRE visible -->
+        <div class="form-group">
+            <label for="cooperativa">Cooperativa</label>
+            <input type="text" id="cooperativa" name="cooperativa" [(ngModel)]="user.cooperativa" 
+                   class="form-control" placeholder="Sin cooperativa" #cooperativa="ngModel" readonly/>
         </div>
       </div>
+    
   
       <button type="submit" [disabled]="perfilForm.invalid" class="btn btn-primary">Guardar</button>
     </form>

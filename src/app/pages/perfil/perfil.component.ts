@@ -18,7 +18,7 @@ export class PerfilComponent {
     name: '',
     email: '',
     password: '********',
-    rol: 'agricultor',
+    rol: 'Agricultor',
     cooperativa: null,
     phone: '',
   };
@@ -40,6 +40,7 @@ export class PerfilComponent {
   obtenerPerfil() {
     this.userService.getUserProfile().subscribe(response => {
       this.user = response;
+      this.user.rol = (this.user.rol || 'Agricultor').charAt(0).toUpperCase() + (this.user.rol || 'Agricultor').slice(1);
     }, error => {
       console.error('Error obteniendo el perfil', error);
     });
