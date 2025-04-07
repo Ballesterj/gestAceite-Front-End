@@ -38,9 +38,11 @@ header {
 .olive-icon {
     height: 50px;
     position: absolute;
-    left: 48%;
+    left: 45%;
     transform: translateX(-50%);
+    transform: translateY(-50%);
 }
+
 
 /* NAV Y LISTA DE MENÚ */
 header nav {
