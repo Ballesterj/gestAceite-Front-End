@@ -23,6 +23,17 @@ export class FincasComponent implements OnInit {
     oliveAmount: ''
   };
 
+  mostrarFiltros: boolean = false;
+
+  filtros = {
+    location: '',
+    kilosMin: null,
+    kilosMax: null,
+    surfaceMin: null,
+    surfaceMax: null
+  };
+
+
   // Para saber si estamos en modo de edición
   isEditMode: boolean = false;
   fincaSeleccionada: any = null;
@@ -45,10 +56,23 @@ export class FincasComponent implements OnInit {
   }
 
   get fincasFiltradas() {
-    return this.fincas.filter(finca =>
-      finca.name.toLowerCase().startsWith(this.filtro.toLowerCase())
-    );
-  }
+    return this.fincas.filter(finca => {
+      const filtroNombre = this.filtro?.toLowerCase() ?? '';
+      const nombreOk = finca.name.toLowerCase().includes(filtroNombre);
+  
+      const locationOk = !this.filtros.location || finca.location.toLowerCase().includes(this.filtros.location.toLowerCase());
+  
+      const kilosOk =
+        (!this.filtros.kilosMin || finca.oliveAmount >= this.filtros.kilosMin) &&
+        (!this.filtros.kilosMax || finca.oliveAmount <= this.filtros.kilosMax);
+  
+      const superficieOk =
+        (!this.filtros.surfaceMin || finca.surface >= this.filtros.surfaceMin) &&
+        (!this.filtros.surfaceMax || finca.surface <= this.filtros.surfaceMax);
+  
+      return nombreOk && locationOk && kilosOk && superficieOk;
+    });
+  }  
 
   // Función para abrir el modal
   abrirModal(finca?: any) {
@@ -115,4 +139,5 @@ export class FincasComponent implements OnInit {
       );
     }
   }
+  
 }

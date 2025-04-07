@@ -133,3 +133,36 @@
   transition: background 0.3s;
 }
 
+.filter-dropdown {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px auto 20px;
+  justify-content: center;
+  background-color: rgba(255, 217, 0, 0);
+  padding: 0px;
+  border-radius: 10px;
+  max-width: 800px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filter-dropdown input {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  min-width: 50px;
+  max-width: 110px;
+  font-size: 14px;
+}
+
+
+.filter-dropdown {
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.filter-dropdown.ng-animating {
+  opacity: 0;
+  transform: scale(0.95);
+}

@@ -1,59 +1,55 @@
 <div class="container" *ngIf="!mostrarModal"> 
-    <div class="search-bar">
-      <button class="filter-btn">FILTROS</button>
-      <input type="text" placeholder="Buscar por nombre" class="search-input" [(ngModel)]="filtro">
-      <button class="add-btn" (click)="abrirModal()">Añadir Finca</button>
+  <div class="search-bar">
+    <button class="filter-btn" (click)="mostrarFiltros = !mostrarFiltros">FILTROS</button>
+    <input type="text" placeholder="Buscar por nombre" class="search-input" [(ngModel)]="filtro">
+    <button class="add-btn" (click)="abrirModal()">Añadir Finca</button>
+  </div>
+
+  <!-- FILTROS AVANZADOS (debajo del search bar) -->
+  <div class="filter-dropdown" *ngIf="mostrarFiltros">
+    <input type="text" placeholder="Ubicación" [(ngModel)]="filtros.location" />
+    <input type="number" placeholder="Kilos mín." [(ngModel)]="filtros.kilosMin" />
+    <input type="number" placeholder="Kilos máx." [(ngModel)]="filtros.kilosMax" />
+    <input type="number" placeholder="Superficie mín." [(ngModel)]="filtros.surfaceMin" />
+    <input type="number" placeholder="Superficie máx." [(ngModel)]="filtros.surfaceMax" />
+  </div>
+
+  <!-- TARJETAS DE FINCAS -->
+  <div class="cards-grid">
+    <div class="card" *ngFor="let finca of fincasFiltradas" (click)="abrirModal(finca)">
+      <h3>{{ finca.name }}</h3>
+      <p>Ubicación: {{ finca.location }}</p>
+      <p>Cantidad de Kilos: {{ finca.oliveAmount }} kg</p>
     </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div *ngIf="mostrarModal" class="modal-overlay">
+  <div class="modal">
+    <h2>{{ isEditMode ? 'Editar Finca' : 'Nueva Finca' }}</h2>
+    <label>Nombre:</label>
+    <input type="text" [(ngModel)]="nuevaFinca.name" />
     
-    <div class="cards-grid">
-      <div class="card" *ngFor="let finca of fincasFiltradas" (click)="abrirModal(finca)">
-        <h3>{{ finca.name }}</h3>
-        <p>Ubicación: {{ finca.location }}</p>
-        <p>Cantidad de Kilos: {{ finca.oliveAmount }} kg</p>
-      </div>
+    <label>Ubicación:</label>
+    <input type="text" [(ngModel)]="nuevaFinca.location" />
+    
+    <label>Superficie:</label>
+    <input type="number" [(ngModel)]="nuevaFinca.surface" />
+    
+    <label>Cantidad de Kilos:</label>
+    <input type="number" [(ngModel)]="nuevaFinca.oliveAmount" />
+
+    <div *ngIf="formInvalido" class="error-message">Todos los campos son obligatorios</div>
+
+    <div class="modal-buttons">
+      <button class="cancel-btn" (click)="cerrarModal()">Cancelar</button>
+      <button 
+        [ngClass]="{ 'disabled-btn': formInvalido, 'enabled-btn': !formInvalido }"
+        [disabled]="formInvalido"
+        (click)="guardarFinca()">
+        Guardar
+      </button>
     </div>
   </div>
-  
-  <!-- MODAL -->
-  <div class="modal-overlay" *ngIf="mostrarModal">
-    <div class="modal">
-        <h2>{{ isEditMode ? 'Editar Finca' : 'Nueva Finca' }}</h2>
-          
-      <form (ngSubmit)="guardarFinca()" #fincaForm="ngForm">
-        <div class="form-group">
-          <label for="name">Nombre:</label>
-          <input type="text" id="name" name="name" [(ngModel)]="nuevaFinca.name" required #name="ngModel" class="form-control">
-          <div *ngIf="name.invalid && name.touched" class="error-message">El nombre es requerido.</div>
-        </div>
-  
-        <div class="form-group">
-          <label for="location">Ubicación:</label>
-          <input type="text" id="location" name="location" [(ngModel)]="nuevaFinca.location" required #location="ngModel" class="form-control">
-          <div *ngIf="location.invalid && location.touched" class="error-message">La ubicación es requerida.</div>
-        </div>
-  
-        <div class="form-group">
-          <label for="surface">Superficie:</label>
-          <input type="number" id="surface" name="surface" [(ngModel)]="nuevaFinca.surface" required #surface="ngModel" class="form-control">
-          <div *ngIf="surface.invalid && surface.touched" class="error-message">La superficie es requerida.</div>
-        </div>
-  
-        <div class="form-group">
-          <label for="oliveAmount">Cantidad de Olivas:</label>
-          <input type="number" id="oliveAmount" name="oliveAmount" [(ngModel)]="nuevaFinca.oliveAmount" required #oliveAmount="ngModel" class="form-control">
-          <div *ngIf="oliveAmount.invalid && oliveAmount.touched" class="error-message">La cantidad de olivas es requerida.</div>
-        </div>
-  
-        <div class="modal-buttons">
-            <button type="submit" 
-               [disabled]="fincaForm.invalid" 
-               [ngClass]="{ 'enabled-btn': !fincaForm.invalid, 'disabled-btn': fincaForm.invalid }">
-                Guardar
-            </button>
-              <button type="button" class="cancel-btn" (click)="cerrarModal()">Cancelar</button>
-        </div>
-      </form>
-    </div>
-  </div>
-  
-  
+</div>
