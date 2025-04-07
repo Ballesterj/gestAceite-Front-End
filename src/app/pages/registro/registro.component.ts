@@ -22,8 +22,8 @@ export class RegistroComponent {
   onSubmit() {
     const userData = {
       email: this.email,
-      nombre: this.nombre,
-      telefono: this.telefono,
+      name: this.nombre,
+      phone: this.telefono,
       password: this.password
     };
 
