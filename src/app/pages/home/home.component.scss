@@ -5,81 +5,120 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background-color: #1a0033; /* Color de fondo principal */
-}
-
-main {
+  }
+  
+  main {
     flex: 1; /* Permite que main ocupe el espacio restante */
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
-}
-
-.main-content {
+    margin-top: 18px;
+  }
+  
+  .main-content {
     text-align: center;
     width: 80%; /* Ajusta el ancho según sea necesario */
     max-width: 1200px;
     padding: 20px;
-}
-
-.olive-price {
+  }
+  
+  /* Estilo del precio del aceite */
+  .olive-price {
     background-color: #330066; /* Color de fondo del precio */
     color: white;
-    padding: 10px;
+    padding: 5px;
     margin-bottom: 20px;
     max-width: 200px;
     border-radius: 10px;
-
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-}
-
-
-.main-card {
-    background-color: #d9d9d9; /* Color de fondo de la tarjeta principal */
-    display: flex;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.card-content {
-    flex: 1;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-}
-
-.shape {
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Estilos para las tarjetas antiguas */
+  .shape {
     width: 80px;
     height: 80px;
-    background-color: #a6a6a6; /* Color de las formas */
+    background-color: #a6a6a6;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 24px;
     color: white;
-}
-
-.triangle {
+  }
+  
+  .triangle {
     clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-}
-
-.square {
+  }
+  
+  .square {
     width: 100px;
     height: 100px;
-}
-
-.circle {
+  }
+  
+  .circle {
     border-radius: 50%;
     width: 100px;
     height: 100px;
-}
-
-.card-side-bar {
-    width: 20px;
-    background-color: #a6a6a6;
-}
+  }
+  
+  /* Tarjetas de noticias */
+  .main-card {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 20px auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+  
+  .card-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .card-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .card-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Fondo oscuro para legibilidad */
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .card-description {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.4;
+    margin: 0;
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    max-width: 100%;
+  }
+  
+  .card-link {
+    font-size: 12px;
+    color: #ffffff;
+    text-decoration: none;
+    align-self: flex-start;
+    font-family: 'Arial', sans-serif;
+  }
+  

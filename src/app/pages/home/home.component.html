@@ -1,23 +1,26 @@
 <main>
     <section class="main-content">
-        <div class="olive-price">
-            <p>OLIVE OIL PRICE</p>
+      <!-- Mostrar el precio del aceite -->
+      <div class="olive-price">
+        <div *ngIf="precios">
+          <p><strong>{{ precios?.nombre }}:</strong> {{ precios?.precio }} €/Kg</p>
         </div>
-        <div class="main-card">
-            <div class="card-content">
-                <div class="shape triangle"></div>
-                <div class="shape square"></div>
-                <div class="shape circle">1st</div>
-            </div>
-            <div class="card-side-bar"></div>
+        <div *ngIf="!precios">
+          <p>Cargando precio...</p>
         </div>
-        <div class="main-card">
-            <div class="card-content">
-                <div class="shape triangle"></div>
-                <div class="shape square"></div>
-                <div class="shape circle">1st</div>
-            </div>
-            <div class="card-side-bar"></div>
+      </div>
+  
+      <!-- Mostrar las noticias en las tarjetas -->
+      <div class="main-card" *ngFor="let noticia of noticias">
+        <div class="card-content">
+          <img [src]="noticia.imagen" alt="Imagen de la noticia">
+          <div class="card-overlay">
+            <a class="card-link" [href]="noticia.enlace" target="_blank">
+              <p class="card-description">{{ noticia.titulo }}.</p>
+            </a>
+          </div>
         </div>
+      </div>
     </section>
-</main>
+  </main>
+  
