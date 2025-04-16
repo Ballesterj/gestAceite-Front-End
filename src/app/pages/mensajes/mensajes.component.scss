@@ -1,0 +1,99 @@
+.chat-container {
+    display: flex;
+    height: 100%;
+    background-color: #1e1f2d;
+    color: rgb(0, 0, 0);
+    margin-top: 20px;
+  }
+  
+  /* Lista de contactos */
+  .chat-sidebar {
+    width: 260px;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-right: 10px;
+
+    h3 {
+      color: #000000; /* Título en amarillo */
+      margin-bottom: 1rem;
+    }
+  
+    .mat-list-item {
+      position: relative;
+      padding-right: 3rem;
+  
+      .mat-line {
+        font-size: 1rem;
+        color: #fff700; /* Nombre del contacto en gris oscuro */
+      }
+  
+      .mensaje-preview {
+        font-size: 0.75rem;
+        color: #ff0202; /* Mensaje de vista previa en rojo */
+      }
+  
+      .hora {
+        position: absolute;
+        right: 0.5rem;
+        top: 1rem;
+        font-size: 0.7rem;
+        color: #000000; /* Hora en color negro */
+      }
+    }
+  }
+  
+  /* Chat principal */
+  .chat-window {
+    flex: 1;
+    background-color: #f9f7fb;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    overflow: hidden;
+    margin-right: 10px;
+  
+    .chat-header {
+      padding: 1rem;
+      background-color: #6010c8;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: bold;
+      color: white; /* Color blanco para el texto del encabezado */
+    }
+  
+    .chat-messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+  
+      .mensaje-cooperativa {
+        background-color: #e3e3e3;
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+        color: #333; /* Mensajes en gris oscuro */
+        display: inline-block;
+        max-width: 70%;
+      }
+    }
+  
+    .chat-input {
+      padding: 1rem;
+      background-color: #e9e2f7;
+  
+      .input-mensaje {
+        width: 100%;
+        background-color: #eae5f4;
+  
+        input {
+          color: #333; /* Color gris oscuro para el texto del input */
+        }
+  
+        .mat-form-field-outline {
+          border-radius: 1rem;
+        }
+      }
+    }
+  }
+  
