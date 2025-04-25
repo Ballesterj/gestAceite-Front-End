@@ -3,33 +3,35 @@
     <div class="chat-sidebar">
       <h3>Mensajes</h3>
       <mat-list>
-        <mat-list-item *ngFor="let mensaje of mensajes">
+        <mat-list-item class="mat-list-item" *ngFor="let mensaje of mensajes" (click)="seleccionarMensaje(mensaje)">
           <mat-icon matListAvatar>person</mat-icon>
-          <div matLine>{{ mensaje.nombre }}</div>
-          <div matLine class="mensaje-preview">Supporting line text lorem...</div>
-          <span class="hora">10 min</span>
+          <!-- Añadimos la clase 'mensaje-issue' al elemento donde mostramos el 'issue' -->
+          <div matLine class="mensaje-issue">{{ mensaje.issue }}</div>
+          <div matLine class="mensaje-preview">{{ mensaje.message }}</div>
+          <span class="hora">{{mensaje.hora}}</span>
         </mat-list-item>
       </mat-list>
     </div>
   
     <!-- Ventana de chat -->
     <div class="chat-window">
-      <div class="chat-header">
-        <mat-icon>person</mat-icon>
-        <span>Name</span>
+      <div class="chat-header" *ngIf="mensajeSeleccionado">
+        <mat-icon>factory</mat-icon>
+        <span>{{ mensajeSeleccionado.issue }}</span>
       </div>
   
-      <div class="chat-messages">
+      <div class="chat-messages" *ngIf="mensajeSeleccionado">
         <div class="mensaje-cooperativa">
-          Mensaje de cooperativa!
+          {{ mensajeSeleccionado.message }}
         </div>
       </div>
   
-      <div class="chat-input">
-        <mat-form-field appearance="outline" class="input-mensaje" disabled>
+      <!-- Input deshabilitado pero visible -->
+      <div class="chat-input" *ngIf="mensajeSeleccionado">
+        <mat-form-field appearance="outline" class="input-mensaje">
           <mat-icon matPrefix>emoji_emotions</mat-icon>
-          <input matInput placeholder="Escribe un mensaje...">
-          <button mat-icon-button matSuffix>
+          <input matInput placeholder="Escribe un mensaje..." [disabled]="true">
+          <button mat-icon-button matSuffix disabled>
             <mat-icon>send</mat-icon>
           </button>
         </mat-form-field>

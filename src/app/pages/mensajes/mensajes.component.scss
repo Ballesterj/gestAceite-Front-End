@@ -1,49 +1,65 @@
 .chat-container {
     display: flex;
-    height: 100%;
+    height: 80%;
     background-color: #1e1f2d;
-    color: rgb(0, 0, 0);
+    color: #000;
     margin-top: 20px;
   }
   
-  /* Lista de contactos */
+  /* Sidebar */
   .chat-sidebar {
-    width: 260px;
+    width: 280px;
     background-color: #ffffff;
     padding: 1rem;
     border-radius: 1rem;
     margin-right: 10px;
-
+  
+    max-height: 100%;
+    overflow-y: auto;
+  
     h3 {
-      color: #000000; /* Título en amarillo */
+      color: #000;
       margin-bottom: 1rem;
     }
   
     .mat-list-item {
       position: relative;
-      padding-right: 3rem;
+      padding: 1rem;
+      margin-bottom: 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background-color: #fe8787;
+      cursor: pointer;
+      height: 80px;
   
-      .mat-line {
-        font-size: 1rem;
-        color: #fff700; /* Nombre del contacto en gris oscuro */
+      &:hover {
+        background-color: #e0e0e0;
+      }
+
+      .mat-icon{
+        margin-top:5px;
       }
   
-      .mensaje-preview {
-        font-size: 0.75rem;
-        color: #ff0202; /* Mensaje de vista previa en rojo */
+      /* Aplicamos el estilo bold al 'issue' con la nueva clase 'mensaje-issue' */
+      .mensaje-issue {
+        font-weight: bold;  /* Estilo en negrita */
+        font-size: 1rem;
+        color: #000000;
       }
   
       .hora {
         position: absolute;
-        right: 0.5rem;
+        right: 0.75rem;
         top: 1rem;
         font-size: 0.7rem;
-        color: #000000; /* Hora en color negro */
+        color: #333;
+        margin-top: -10px;
       }
     }
   }
   
-  /* Chat principal */
+  /* Chat window */
   .chat-window {
     flex: 1;
     background-color: #f9f7fb;
@@ -60,7 +76,7 @@
       align-items: center;
       gap: 0.5rem;
       font-weight: bold;
-      color: white; /* Color blanco para el texto del encabezado */
+      color: white;
     }
   
     .chat-messages {
@@ -72,7 +88,7 @@
         background-color: #e3e3e3;
         padding: 0.5rem 1rem;
         border-radius: 1rem;
-        color: #333; /* Mensajes en gris oscuro */
+        color: #333;
         display: inline-block;
         max-width: 70%;
       }
@@ -87,7 +103,7 @@
         background-color: #eae5f4;
   
         input {
-          color: #333; /* Color gris oscuro para el texto del input */
+          color: #333;
         }
   
         .mat-form-field-outline {
