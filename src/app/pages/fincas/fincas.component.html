@@ -19,7 +19,8 @@
     <div class="card" *ngFor="let finca of fincasFiltradas" (click)="abrirModal(finca)">
       <h3>{{ finca.name }}</h3>
       <p>Ubicación: {{ finca.location }}</p>
-      <p>Cantidad de Kilos: {{ finca.oliveAmount }} kg</p>
+      <p>Cantidad de Olivos: {{ finca.oliveAmount }}</p>
+      <p>Superficie: {{ finca.surface }} ha</p>
     </div>
   </div>
 </div>
