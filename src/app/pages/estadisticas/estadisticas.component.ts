@@ -10,6 +10,18 @@ import { Inject } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 
+interface Cosecha {
+  year: number;
+  olivesHarvestedKg: number;
+  oilYieldPercent: number;
+}
+
+interface Finca {
+  harvests?: Cosecha[];
+  surface?: number;
+  oliveAmount?: number;
+}
+
 @Component({
   selector: 'app-estadisticas',
   standalone: true,
@@ -18,11 +30,11 @@ import { MatSelectModule } from '@angular/material/select';
   styleUrls: ['./estadisticas.component.scss']
 })
 export class EstadisticasComponent implements OnInit {
-  fincas: { harvests?: { year: number; olivesHarvestedKg: number; oilYieldPercent: number }[]; surface?: number }[] = [];
+  fincas: Finca[] = [];
   totalOlives = 0;
   averageOlives = 0;
   totalOil = 0;
-  totalOilInLiters = 0;  // Nueva propiedad para el aceite en litros
+  totalOilInLiters = 0;
   averageYield = 0;
   productionPerHectare = 0;
   totalProcessedOlives = 0;
@@ -82,42 +94,41 @@ export class EstadisticasComponent implements OnInit {
   filtrarHarvests() {
     return this.selectedYear === 'all'
       ? this.fincas.flatMap(f => f.harvests || [])
-      : this.fincas.flatMap(f => (f.harvests || []).filter((h: { year: number }) => h.year === this.selectedYear));
+      : this.fincas.flatMap(f => (f.harvests || []).filter(h => h.year === this.selectedYear));
   }
 
   calcularEstadisticas(): void {
     let totalOlives = 0;
     let totalOilKg = 0;
-    let totalOilLiters = 0;  // Nueva variable para el aceite en litros
+    let totalOilLiters = 0;
     let allYields: number[] = [];
     let totalProcessedOlives = 0;
 
     const filteredHarvests = this.filtrarHarvests();
 
     const filteredFincas = this.fincas.filter(f =>
-      (f.harvests || []).some((h: { year: number }) => this.selectedYear === 'all' || h.year === this.selectedYear)
+      (f.harvests || []).some(h => this.selectedYear === 'all' || h.year === this.selectedYear)
     );
+
     const totalSurface = filteredFincas.reduce((acc, f) => acc + (f.surface || 0), 0);
+    const totalOliveTrees = filteredFincas.reduce((acc, f) => acc + (f.oliveAmount || 0), 0);
 
     for (const h of filteredHarvests) {
       totalOlives += h.olivesHarvestedKg;
       totalOilKg += h.olivesHarvestedKg * h.oilYieldPercent / 100;
-      totalOilLiters += (h.olivesHarvestedKg * h.oilYieldPercent / 100) / 0.92;  // Conversión de kg a litros
+      totalOilLiters += (h.olivesHarvestedKg * h.oilYieldPercent / 100) / 0.92;
       allYields.push(h.oilYieldPercent);
-
       totalProcessedOlives += h.olivesHarvestedKg;
     }
 
     const numHarvests = filteredHarvests.length;
 
     this.totalOlives = totalOlives;
-    this.totalOil = totalOilKg;  // Usamos totalOilKg para mostrar en kg
-    this.averageOlives = totalOlives / (numHarvests || 1);
+    this.totalOil = totalOilKg;
+    this.averageOlives = totalOliveTrees > 0 ? totalOlives / totalOliveTrees : 0;
     this.averageYield = allYields.reduce((a, b) => a + b, 0) / (allYields.length || 1);
     this.productionPerHectare = totalSurface > 0 ? totalOlives / totalSurface : 0;
     this.totalProcessedOlives = totalProcessedOlives;
-
-    // Almacenar el aceite en litros
     this.totalOilInLiters = totalOilLiters;
 
     this.title = this.selectedYear === 'all'
