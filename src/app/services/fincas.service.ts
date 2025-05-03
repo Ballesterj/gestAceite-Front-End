@@ -35,8 +35,11 @@ export class FincasService {
 
   actualizarFinca(finca: any): Observable<any> {
     const headers = this.createHeaders();
-    const id = finca._id;
+
+    // Eliminamos el _id y cualquier otro campo no necesario (como __v)
     const { _id, __v, ...fincaSinId } = finca;
-    return this.http.patch(`${this.apiUrl}/${id}`, fincaSinId, { headers });
+
+    // Realizamos la solicitud PATCH sin el _id ni __v
+    return this.http.patch(`${this.apiUrl}/${finca._id}`, fincaSinId, { headers });
   }
 }

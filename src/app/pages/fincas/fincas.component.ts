@@ -4,6 +4,12 @@ import { Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+interface Cosecha {
+  year: number;
+  olivesHarvestedKg: string;
+  oilYieldPercent: string;
+}
+
 @Component({
   selector: 'app-fincas',
   templateUrl: './fincas.component.html',
@@ -15,13 +21,23 @@ export class FincasComponent implements OnInit {
   filtro: string = '';
   mostrarModal: boolean = false;
 
-  // Añadimos estas propiedades
+  currentYear: number = new Date().getFullYear();
+
   nuevaFinca = {
     name: '',
     location: '',
     surface: '',
-    oliveAmount: ''
+    oliveAmount: '',
+    harvests: [] as Cosecha[]
   };
+
+  cosechaTemporal = {
+    year: this.currentYear,
+    olivesHarvestedKg: '',
+    oilYieldPercent: ''
+  };
+
+  mostrarFormularioCosecha = false;
 
   mostrarFiltros: boolean = false;
 
@@ -33,8 +49,6 @@ export class FincasComponent implements OnInit {
     surfaceMax: null
   };
 
-
-  // Para saber si estamos en modo de edición
   isEditMode: boolean = false;
   fincaSeleccionada: any = null;
 
@@ -59,33 +73,37 @@ export class FincasComponent implements OnInit {
     return this.fincas.filter(finca => {
       const filtroNombre = this.filtro?.toLowerCase() ?? '';
       const nombreOk = finca.name.toLowerCase().includes(filtroNombre);
-  
+
       const locationOk = !this.filtros.location || finca.location.toLowerCase().includes(this.filtros.location.toLowerCase());
-  
+
       const kilosOk =
         (!this.filtros.kilosMin || finca.oliveAmount >= this.filtros.kilosMin) &&
         (!this.filtros.kilosMax || finca.oliveAmount <= this.filtros.kilosMax);
-  
+
       const superficieOk =
         (!this.filtros.surfaceMin || finca.surface >= this.filtros.surfaceMin) &&
         (!this.filtros.surfaceMax || finca.surface <= this.filtros.surfaceMax);
-  
+
       return nombreOk && locationOk && kilosOk && superficieOk;
     });
-  }  
+  }
 
-  // Función para abrir el modal
   abrirModal(finca?: any) {
     this.mostrarModal = true;
+    this.mostrarFormularioCosecha = false;
     if (finca) {
       this.isEditMode = true;
       this.fincaSeleccionada = finca;
-      // Cargar los datos de la finca seleccionada en el formulario
       this.nuevaFinca = { ...finca };
     } else {
       this.isEditMode = false;
-      // Resetear los campos si no es modo edición
-      this.nuevaFinca = { name: '', location: '', surface: '', oliveAmount: '' };
+      this.nuevaFinca = {
+        name: '',
+        location: '',
+        surface: '',
+        oliveAmount: '',
+        harvests: []
+      };
     }
   }
 
@@ -96,13 +114,15 @@ export class FincasComponent implements OnInit {
   }
 
   get formInvalido() {
+    const { name, location, surface, oliveAmount } = this.nuevaFinca;
+  
     return (
-      !this.nuevaFinca.name.trim() ||
-      !this.nuevaFinca.location.trim() ||
-      !this.nuevaFinca.surface ||
-      !this.nuevaFinca.oliveAmount
+      !name || name.trim() === '' ||
+      !location || location.trim() === '' ||
+      surface === null || surface === '' || isNaN(Number(surface)) ||
+      oliveAmount === null || oliveAmount === '' || isNaN(Number(oliveAmount))
     );
-  }
+  }  
 
   guardarFinca() {
     if (this.formInvalido) {
@@ -110,11 +130,11 @@ export class FincasComponent implements OnInit {
     }
 
     if (this.isEditMode && this.fincaSeleccionada) {
-      // Si estamos en modo edición, llamamos al servicio para actualizar la finca
       this.fincaSeleccionada.name = this.nuevaFinca.name;
       this.fincaSeleccionada.location = this.nuevaFinca.location;
       this.fincaSeleccionada.surface = this.nuevaFinca.surface;
       this.fincaSeleccionada.oliveAmount = this.nuevaFinca.oliveAmount;
+      this.fincaSeleccionada.harvests = this.nuevaFinca.harvests;
       this.fincasService.actualizarFinca(this.fincaSeleccionada).subscribe(
         (data) => {
           console.log('Finca actualizada', data);
@@ -126,7 +146,6 @@ export class FincasComponent implements OnInit {
         }
       );
     } else {
-      // Si estamos en modo creación, llamamos al servicio para crear la finca
       this.fincasService.crearFinca(this.nuevaFinca).subscribe(
         (data) => {
           console.log('Finca creada', data);
@@ -139,5 +158,35 @@ export class FincasComponent implements OnInit {
       );
     }
   }
-  
+
+  agregarCosecha() {
+    const { year, olivesHarvestedKg, oilYieldPercent } = this.cosechaTemporal;
+    if (year && olivesHarvestedKg && oilYieldPercent) {
+      this.nuevaFinca.harvests.push({
+        year,
+        olivesHarvestedKg,
+        oilYieldPercent
+      });
+
+      this.cosechaTemporal = {
+        year: this.currentYear,
+        olivesHarvestedKg: '',
+        oilYieldPercent: ''
+      };
+      this.mostrarFormularioCosecha = false;
+    }
+  }
+
+  cancelarCosecha() {
+    this.cosechaTemporal = {
+      year: this.currentYear,
+      olivesHarvestedKg: '',
+      oilYieldPercent: ''
+    };
+    this.mostrarFormularioCosecha = false;
+  }
+
+  eliminarCosecha(index: number) {
+    this.nuevaFinca.harvests.splice(index, 1);
+  }
 }

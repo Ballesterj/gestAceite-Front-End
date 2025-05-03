@@ -5,7 +5,7 @@
     <button class="add-btn" (click)="abrirModal()">Añadir Finca</button>
   </div>
 
-  <!-- FILTROS AVANZADOS (debajo del search bar) -->
+  <!-- FILTROS AVANZADOS -->
   <div class="filter-dropdown" *ngIf="mostrarFiltros">
     <input type="text" placeholder="Ubicación" [(ngModel)]="filtros.location" />
     <input type="number" placeholder="Kilos mín" [(ngModel)]="filtros.kilosMin" />
@@ -14,7 +14,7 @@
     <input type="number" placeholder="Superficie máx" [(ngModel)]="filtros.surfaceMax" />
   </div>
 
-  <!-- TARJETAS DE FINCAS -->
+  <!-- TARJETAS -->
   <div class="cards-grid">
     <div class="card" *ngFor="let finca of fincasFiltradas" (click)="abrirModal(finca)">
       <h3>{{ finca.name }}</h3>
@@ -29,23 +29,64 @@
 <div *ngIf="mostrarModal" class="modal-overlay">
   <div class="modal">
     <h2>{{ isEditMode ? 'Editar Finca' : 'Nueva Finca' }}</h2>
-    <label>Nombre:</label>
-    <input type="text" [(ngModel)]="nuevaFinca.name" />
-    
-    <label>Ubicación:</label>
-    <input type="text" [(ngModel)]="nuevaFinca.location" />
-    
-    <label>Superficie:</label>
-    <input type="number" [(ngModel)]="nuevaFinca.surface" />
-    
-    <label>Cantidad de Kilos:</label>
-    <input type="number" [(ngModel)]="nuevaFinca.oliveAmount" />
+
+    <div class="form-row">
+      <div class="left-column">
+        <label>Nombre:</label>
+        <input type="text" [(ngModel)]="nuevaFinca.name" />
+
+        <label>Ubicación:</label>
+        <input type="text" [(ngModel)]="nuevaFinca.location" />
+
+        <label>Superficie:</label>
+        <input type="number" [(ngModel)]="nuevaFinca.surface" />
+
+        <label>Cantidad de olivos:</label>
+        <input type="number" [(ngModel)]="nuevaFinca.oliveAmount" />
+      </div>
+
+      <div class="right-column">
+        <div *ngIf="mostrarFormularioCosecha" class="harvest-entry">
+          <h3>Nueva Cosecha</h3>
+
+          <label>Año:</label>
+          <input type="number"
+                [(ngModel)]="cosechaTemporal.year"
+                [min]="1950"
+                [max]="currentYear" />
+
+          <label>Kilos de aceitunas cosechadas:</label>
+          <input type="number" [(ngModel)]="cosechaTemporal.olivesHarvestedKg" />
+
+          <label>Rendimiento en aceite (%):</label>
+          <input type="number" [(ngModel)]="cosechaTemporal.oilYieldPercent" />
+
+          <button (click)="agregarCosecha()" class="save-btn">Guardar Cosecha</button>
+          <button (click)="cancelarCosecha()" class="cancel-btn">Cancelar</button>
+        </div>
+
+        <button class="add-harvest-btn" *ngIf="!mostrarFormularioCosecha" (click)="mostrarFormularioCosecha = true">
+          Añadir Cosecha
+        </button>
+
+        <div class="harvest-list" *ngIf="nuevaFinca.harvests.length">
+          <h3>Cosechas añadidas</h3>
+          <ul>
+            <li *ngFor="let h of nuevaFinca.harvests; let i = index">
+              {{ h.year }} - {{ h.olivesHarvestedKg }} kg - {{ h.oilYieldPercent }}%
+              <button (click)="eliminarCosecha(i)">Eliminar</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
     <div *ngIf="formInvalido" class="error-message">Todos los campos son obligatorios</div>
 
     <div class="modal-buttons">
       <button class="cancel-btn" (click)="cerrarModal()">Cancelar</button>
       <button 
+        class="save-btn"
         [ngClass]="{ 'disabled-btn': formInvalido, 'enabled-btn': !formInvalido }"
         [disabled]="formInvalido"
         (click)="guardarFinca()">
