@@ -45,4 +45,8 @@ export class PerfilComponent {
       console.error('Error obteniendo el perfil', error);
     });
   }
+  closeSession(): void {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }
 }
