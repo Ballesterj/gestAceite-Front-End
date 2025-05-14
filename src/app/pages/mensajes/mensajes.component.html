@@ -2,6 +2,9 @@
     <!-- Lista de contactos -->
     <div class="chat-sidebar">
       <h3>Mensajes</h3>
+      <button *ngIf="user?.president" (click)="abrirModalMensaje()" class="crear-mensaje-btn">
+        Crear mensaje
+      </button>
       <mat-list>
         <mat-list-item class="mat-list-item" *ngFor="let mensaje of mensajes" (click)="seleccionarMensaje(mensaje)">
           <mat-icon matListAvatar>person</mat-icon>
@@ -38,4 +41,25 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal para crear mensaje -->
+<div *ngIf="mostrarModalMensaje" class="modal-overlay">
+  <div class="modal">
+    <h2>Nuevo mensaje como presidente</h2>
+
+    <label>Título:</label>
+    <input type="text" [(ngModel)]="nuevoMensaje.issue" />
+
+    <label>Mensaje:</label>
+    <textarea [(ngModel)]="nuevoMensaje.message"></textarea>
+
+    <div class="modal-buttons">
+      <button class="cancel-btn" (click)="cerrarModalMensaje()">Cancelar</button>
+      <button class="save-btn" [disabled]="!nuevoMensaje.issue || !nuevoMensaje.message" (click)="guardarMensaje()">
+        Guardar
+      </button>
+    </div>
+  </div>
+</div>
+
   

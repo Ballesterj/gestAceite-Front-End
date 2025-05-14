@@ -112,4 +112,118 @@
       }
     }
   }
-  
+/* Botón para crear mensajes presidenciales */
+.crear-mensaje-btn {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #145ca1;
+  }
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: flex-start; /* ⬅️ cambia de center a flex-start */
+  justify-content: center;
+  padding-top: 100px; /* ⬅️ controla cuánto baja el modal */
+  z-index: 999;
+}
+
+/* Modal container */
+.modal {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+
+  h2 {
+    margin-top: 0;
+    color: #333;
+  }
+
+  label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: 600;
+    color: #444;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: none;
+      border-color: #6010c8;
+      box-shadow: 0 0 4px rgba(96, 16, 200, 0.4);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    .cancel-btn,
+    .save-btn {
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .cancel-btn {
+      background-color: #ff0000;
+      color: white;
+
+      &:hover {
+        background-color: #999;
+      }
+    }
+
+    .save-btn {
+      background-color: #4caf50;
+      color: white;
+
+      &:hover {
+        background-color: #3c9441;
+      }
+
+      &:disabled {
+        background-color: #a5d6a7;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
