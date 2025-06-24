@@ -1,6 +1,5 @@
 <main>
     <section class="main-content">
-      <!-- Mostrar el precio del aceite -->
       <div class="olive-price">
         <div *ngIf="precios">
           <p><strong>{{ precios?.nombre }}:</strong> {{ precios?.precio }} €/Kg</p>
@@ -10,7 +9,6 @@
         </div>
       </div>
   
-      <!-- Mostrar las noticias en las tarjetas -->
       <div class="main-card" *ngFor="let noticia of noticias">
         <div class="card-content">
           <img [src]="noticia.imagen" alt="Imagen de la noticia">

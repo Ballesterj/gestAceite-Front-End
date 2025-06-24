@@ -6,7 +6,6 @@
     margin-top: 20px;
   }
   
-  /* Sidebar */
   .chat-sidebar {
     width: 280px;
     background-color: #ffffff;
@@ -41,9 +40,8 @@
         margin-top:5px;
       }
   
-      /* Aplicamos el estilo bold al 'issue' con la nueva clase 'mensaje-issue' */
       .mensaje-issue {
-        font-weight: bold;  /* Estilo en negrita */
+        font-weight: bold;
         font-size: 1rem;
         color: #000000;
       }
@@ -59,7 +57,6 @@
     }
   }
   
-  /* Chat window */
   .chat-window {
     flex: 1;
     background-color: #f9f7fb;
@@ -112,7 +109,6 @@
       }
     }
   }
-/* Botón para crear mensajes presidenciales */
 .crear-mensaje-btn {
   display: block;
   width: 100%;
@@ -131,7 +127,6 @@
   }
 }
 
-/* Modal overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -140,13 +135,12 @@
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.6);
   display: flex;
-  align-items: flex-start; /* ⬅️ cambia de center a flex-start */
+  align-items: flex-start; 
   justify-content: center;
-  padding-top: 100px; /* ⬅️ controla cuánto baja el modal */
+  padding-top: 100px;
   z-index: 999;
 }
 
-/* Modal container */
 .modal {
   background-color: #fff;
   padding: 2rem;

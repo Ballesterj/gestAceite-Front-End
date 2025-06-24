@@ -4,11 +4,11 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #1a0033; /* Color de fondo principal */
+    background-color: #1a0033;
   }
   
   main {
-    flex: 1; /* Permite que main ocupe el espacio restante */
+    flex: 1; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,14 +17,13 @@ body {
   
   .main-content {
     text-align: center;
-    width: 80%; /* Ajusta el ancho según sea necesario */
+    width: 80%; 
     max-width: 1200px;
     padding: 20px;
   }
-  
-  /* Estilo del precio del aceite */
+
   .olive-price {
-    background-color: #330066; /* Color de fondo del precio */
+    background-color: #330066; 
     color: white;
     padding: 5px;
     margin-bottom: 20px;
@@ -36,7 +35,6 @@ body {
     font-family: 'Arial', sans-serif;
   }
   
-  /* Estilos para las tarjetas antiguas */
   .shape {
     width: 80px;
     height: 80px;
@@ -63,7 +61,6 @@ body {
     height: 100px;
   }
   
-  /* Tarjetas de noticias */
   .main-card {
     position: relative;
     width: 100%;
@@ -92,7 +89,7 @@ body {
     position: absolute;
     bottom: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Fondo oscuro para legibilidad */
+    background: rgba(0, 0, 0, 0.6);
     color: #fff;
     padding: 10px;
     display: flex;

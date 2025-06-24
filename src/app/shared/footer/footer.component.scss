@@ -2,7 +2,7 @@ footer {
   width: 100%;
   background-color: #230046;
   color: white;
-  padding: 16px 0; // Más padding para mejor espaciado en móviles
+  padding: 16px 0;
   text-align: center;
 }
 
@@ -12,10 +12,9 @@ footer {
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px; // Agregamos padding lateral para mejor adaptación
+  padding: 0 20px;
 }
 
-/* Secciones del footer */
 .footer-left,
 .footer-right {
   display: flex;
@@ -52,7 +51,6 @@ footer {
   }
 }
 
-/* Iconos sociales */
 .social-icons {
   display: flex;
   justify-content: center;
@@ -68,7 +66,6 @@ footer {
   }
 }
 
-/* MEDIA QUERIES PARA RESPONSIVE */
 @media (max-width: 768px) {
   .footer-container {
     flex-direction: column;
@@ -83,7 +80,7 @@ footer {
 
   .footer-left h2,
   .footer-right h3 {
-    font-size: 20px; // Reducimos el tamaño en móviles
+    font-size: 20px;
   }
 
   .social-icons {

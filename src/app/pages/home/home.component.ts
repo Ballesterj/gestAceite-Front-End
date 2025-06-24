@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { OliveService } from '../../services/olive.service';  // Asegúrate de importar el servicio
+import { OliveService } from '../../services/olive.service';
 
 @Component({
   selector: 'app-home',
@@ -11,35 +11,31 @@ import { OliveService } from '../../services/olive.service';  // Asegúrate de i
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  precios: any;  // Variable para almacenar los precios del aceite
-  noticias: any[] = []; // Variable para almacenar las noticias sobre aceite como un array
+  precios: any;
+  noticias: any[] = [];
 
-  // Inyectar el servicio OliveService en el constructor
   constructor(private oliveService: OliveService) {}
 
-  // Llamar a los métodos del servicio cuando el componente se inicialice
   ngOnInit(): void {
     this.loadPrecios();
     this.loadNoticias();
   }
 
-  // Método para obtener los precios
   loadPrecios(): void {
     this.oliveService.getPrecios().subscribe({
       next: (data) => {
         this.precios = data;
-        console.log('Precios:', this.precios); // Aquí puedes ver los datos en la consola
+        console.log('Precios:', this.precios); 
       },
       error: (err) => console.error('Error al obtener precios', err)
     });
   }
 
-  // Método para obtener las noticias
   loadNoticias(): void {
     this.oliveService.getNoticias().subscribe({
       next: (data) => {
-        this.noticias = data;  // Asumimos que 'data' es un array de noticias
-        console.log('Noticias:', this.noticias); // Aquí puedes ver los datos en la consola
+        this.noticias = data;  
+        console.log('Noticias:', this.noticias); 
       },
       error: (err) => console.error('Error al obtener noticias', err)
     });

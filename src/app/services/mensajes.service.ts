@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class MensajesService {
-  private apiUrl = 'http://localhost:3000/mensaje'; // ajustá según tu backend
+  private apiUrl = 'http://localhost:3000/mensaje';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 

@@ -1,7 +1,6 @@
 <div class="estadisticas-container">
     <h2 class="titulo">{{ title }}</h2>
   
-    <!-- Filtro por Año -->
     <mat-form-field appearance="fill">
       <mat-label>Seleccionar Año</mat-label>
       <mat-select [(value)]="selectedYear" (selectionChange)="onYearChange()">
@@ -26,7 +25,6 @@
       </div>
     </div>
   
-    <!-- Gráfica de Producción Anual -->
     <mat-card class="chart-card">
       <mat-card-title>Evolución anual de la producción</mat-card-title>
       <mat-card-content>
@@ -34,7 +32,6 @@
       </mat-card-content>
     </mat-card>
   
-    <!-- Grado promedio de la cosecha -->
     <mat-card class="chart-card">
       <mat-card-title>Grado promedio de la cosecha</mat-card-title>
       <mat-card-content>
@@ -42,7 +39,6 @@
       </mat-card-content>
     </mat-card>
   
-    <!-- Relación aceitunas vs aceite -->
     <mat-card class="chart-card">
       <mat-card-title>Relación entre aceitunas cosechadas y aceite producido</mat-card-title>
       <mat-card-content>

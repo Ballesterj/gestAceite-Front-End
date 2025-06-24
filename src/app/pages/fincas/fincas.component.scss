@@ -45,7 +45,6 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* MODAL NUEVA FINCA (actualizado y extendido) */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -96,7 +95,6 @@
   border-radius: 5px;
 }
 
-/* Botones dentro del modal */
 .modal-buttons {
   display: flex;
   justify-content: space-between;
@@ -137,14 +135,12 @@
   margin-top: 10px;
 }
 
-/* Botón deshabilitado */
 .disabled-btn {
   background-color: gray;
   cursor: not-allowed;
   color: white;
 }
 
-/* Botón habilitado (cuando el formulario es válido) */
 .enabled-btn {
   background-color: #4CAF50 !important;
   color: white !important;
@@ -155,7 +151,6 @@
   transition: background 0.3s;
 }
 
-/* Filtro */
 .filter-dropdown {
   display: flex;
   flex-wrap: wrap;

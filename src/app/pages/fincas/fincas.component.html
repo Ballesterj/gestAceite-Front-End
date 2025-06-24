@@ -5,7 +5,6 @@
     <button class="add-btn" (click)="abrirModal()">Añadir Finca</button>
   </div>
 
-  <!-- FILTROS AVANZADOS -->
   <div class="filter-dropdown" *ngIf="mostrarFiltros">
     <input type="text" placeholder="Ubicación" [(ngModel)]="filtros.location" />
     <input type="number" placeholder="Kilos mín" [(ngModel)]="filtros.kilosMin" />
@@ -14,7 +13,6 @@
     <input type="number" placeholder="Superficie máx" [(ngModel)]="filtros.surfaceMax" />
   </div>
 
-  <!-- TARJETAS -->
   <div class="cards-grid">
     <div class="card" *ngFor="let finca of fincasFiltradas" (click)="abrirModal(finca)">
       <h3>{{ finca.name }}</h3>
@@ -25,7 +23,6 @@
   </div>
 </div>
 
-<!-- MODAL -->
 <div *ngIf="mostrarModal" class="modal-overlay">
   <div class="modal">
     <h2>{{ isEditMode ? 'Editar Finca' : 'Nueva Finca' }}</h2>

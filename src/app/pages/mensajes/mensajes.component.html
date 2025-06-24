@@ -1,5 +1,4 @@
 <div class="chat-container">
-    <!-- Lista de contactos -->
     <div class="chat-sidebar">
       <h3>Mensajes</h3>
       <button *ngIf="user?.president" (click)="abrirModalMensaje()" class="crear-mensaje-btn">
@@ -8,7 +7,6 @@
       <mat-list>
         <mat-list-item class="mat-list-item" *ngFor="let mensaje of mensajes" (click)="seleccionarMensaje(mensaje)">
           <mat-icon matListAvatar>person</mat-icon>
-          <!-- Añadimos la clase 'mensaje-issue' al elemento donde mostramos el 'issue' -->
           <div matLine class="mensaje-issue">{{ mensaje.issue }}</div>
           <div matLine class="mensaje-preview">{{ mensaje.message }}</div>
           <span class="hora">{{mensaje.hora}}</span>
@@ -16,7 +14,6 @@
       </mat-list>
     </div>
   
-    <!-- Ventana de chat -->
     <div class="chat-window">
       <div class="chat-header" *ngIf="mensajeSeleccionado">
         <mat-icon>factory</mat-icon>
@@ -29,7 +26,6 @@
         </div>
       </div>
   
-      <!-- Input deshabilitado pero visible -->
       <div class="chat-input" *ngIf="mensajeSeleccionado">
         <mat-form-field appearance="outline" class="input-mensaje">
           <mat-icon matPrefix>emoji_emotions</mat-icon>
@@ -42,7 +38,6 @@
     </div>
   </div>
 
-  <!-- Modal para crear mensaje -->
 <div *ngIf="mostrarModalMensaje" class="modal-overlay">
   <div class="modal">
     <h2>Nuevo mensaje como presidente</h2>

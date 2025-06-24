@@ -10,11 +10,10 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 70px; /* 🔥 Mantiene el header pequeño */
+    height: 70px;
     overflow: hidden;
 }
 
-/* Contenedor flexible */
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -25,16 +24,14 @@ header {
     position: relative;
 }
 
-/* 🚀 LOGO MÁS GRANDE SIN CRECER EL HEADER */
 .logo {
-    height: 210px; /* Mantiene el tamaño original */
+    height: 210px; 
     max-width: 250px;
     position: relative;
-    transform: scale(1.5); /* 📌 Lo agrandamos sin afectar el header */
+    transform: scale(1.5);
     transform-origin: center;
 }
 
-/* ICONO CENTRAL */
 .olive-icon {
     height: 50px;
     position: absolute;
@@ -43,8 +40,6 @@ header {
     transform: translateY(-50%);
 }
 
-
-/* NAV Y LISTA DE MENÚ */
 header nav {
     margin-left: auto;
     display: flex;
@@ -72,13 +67,12 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
-/* ✅ RESPONSIVE: HEADER EN COLUMNA EN MÓVILES */
 @media (max-width: 770px) {
     header {
         flex-direction: column;
         align-items: center;
         padding: 15px 20px;
-        height: auto; /* Se ajusta sin crecer innecesariamente */
+        height: auto; 
     }
 
     .header-container {
@@ -88,7 +82,7 @@ nav ul li a:hover {
     }
 
     .logo {
-        transform: scale(1.8); /* 📌 Lo hacemos aún más grande en móviles */
+        transform: scale(1.8); 
     }
 
     .olive-icon {
@@ -104,7 +98,7 @@ nav ul li a:hover {
     }
 
     nav ul {
-        flex-direction: column; /* 📌 Menú en columna */
+        flex-direction: column;
         gap: 15px;
     }
 

@@ -11,12 +11,12 @@
     justify-content: flex-start;
     width: 150px;
     margin-left: 50px;
-    position: relative; /* Evita que afecte otros elementos */
+    position: relative;
 }
 
 .profile-image {
     position: relative;
-    top: 80px; /* Baja solo la imagen sin afectar otros elementos */
+    top: 80px;
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -44,15 +44,15 @@
     background-color: white;
     height: 60vh;
     position: relative;
-    left: 350px; /* Ajusta para mantener su independencia */
+    left: 350px;
     top: -100px;
 }
 
 .form-section {
     position: absolute;
-    top: 50%;
+    top: 70%;
     left: 50%;
-    transform: translate(-50%, -60%); /* Centra completamente */
+    transform: translate(-50%, -60%);
     display: flex;
     flex-direction: column;
     width: 450px;
@@ -63,17 +63,17 @@
 .perfil-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 25px 20px; /* Aumenta el espacio entre filas y columnas */
+    gap: 25px 20px; 
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    padding: 10px; /* Agrega espacio interno */
+    padding: 10px;
 }
 
 .form-row {
-    display: contents; /* Mantiene los hijos en la misma fila sin afectar la estructura */
+    display: contents;
 }
 
 label {
@@ -108,10 +108,10 @@ button.btn.btn-primary {
     border-radius: 4px;
     cursor: pointer;
     margin-top: 20px;
-    width: 200px; /* Ajusta el ancho del botón */
-    margin-left: 60%;  /* Centra el botón horizontalmente */
-    margin-right: auto; /* Centra el botón horizontalmente */
-    display: block; /* Asegura que el botón se comporte como un bloque para centrarlo */
+    width: 200px;
+    margin-left: 60%;
+    margin-right: auto;
+    display: block;
 }
 
 button.btn.btn-primary:disabled {
@@ -120,7 +120,7 @@ button.btn.btn-primary:disabled {
 }
 
 .hidden {
-    visibility: hidden; /* Oculta sin eliminar espacio */
+    visibility: hidden;
 }
 .btn-close-session {
     background-color: #e53e3e;

@@ -31,5 +31,4 @@ export class UserService {
       const headers = this.createHeaders();
       return this.http.get(`${this.apiUrl}/me`, { headers });
     }
-  
 }
